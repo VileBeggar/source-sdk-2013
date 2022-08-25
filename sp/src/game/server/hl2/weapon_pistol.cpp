@@ -25,7 +25,7 @@
 #define	PISTOL_FASTEST_DRY_REFIRE_TIME	0.2f
 
 #define	PISTOL_ACCURACY_SHOT_PENALTY_TIME		0.2f	// Applied amount of time each shot adds to the time we must recover from
-#define	PISTOL_ACCURACY_MAXIMUM_PENALTY_TIME	1.5f	// Maximum penalty to deal out
+#define	PISTOL_ACCURACY_MAXIMUM_PENALTY_TIME	2.0f	// Maximum penalty to deal out
 
 ConVar	pistol_use_new_accuracy( "pistol_use_new_accuracy", "1" );
 
@@ -82,7 +82,7 @@ public:
 											1.0f ); 
 
 			// We lerp from very accurate to inaccurate over time
-			VectorLerp( VECTOR_CONE_1DEGREES, VECTOR_CONE_6DEGREES, ramp, cone );
+			VectorLerp( VECTOR_CONE_1DEGREES, VECTOR_CONE_3DEGREES, ramp, cone );
 		}
 		else
 		{
@@ -105,7 +105,7 @@ public:
 
 	virtual float GetFireRate( void ) 
 	{
-		return 0.5f; 
+		return 100.0f; 
 	}
 
 #ifdef MAPBASE
@@ -413,14 +413,14 @@ void CWeaponPistol::PrimaryAttack( void )
 
 	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
 
-	if( pOwner )
-	{
+	//if( pOwner )
+	//{
 		// Each time the player fires the pistol, reset the view punch. This prevents
 		// the aim from 'drifting off' when the player fires very quickly. This may
 		// not be the ideal way to achieve this, but it's cheap and it works, which is
 		// great for a feature we're evaluating. (sjb)
-		pOwner->ViewPunchReset();
-	}
+		//pOwner->ViewPunchReset();
+	//}
 
 	BaseClass::PrimaryAttack();
 
@@ -538,8 +538,8 @@ void CWeaponPistol::AddViewKick( void )
 
 	QAngle	viewPunch;
 
-	viewPunch.x = random->RandomFloat( 0.25f, 0.5f );
-	viewPunch.y = random->RandomFloat( -.6f, .6f );
+	viewPunch.x = random->RandomFloat(-0.6f, -0.9f) * (1.2 + m_flAccuracyPenalty);
+	viewPunch.y = random->RandomFloat(-0.5f, 0.5f) * (1 + m_flAccuracyPenalty);
 	viewPunch.z = 0.0f;
 
 	//Add it to the view punch
