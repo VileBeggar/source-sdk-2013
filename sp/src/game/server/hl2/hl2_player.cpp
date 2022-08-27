@@ -683,7 +683,6 @@ void CHL2_Player::Precache( void )
 	BaseClass::Precache();
 
 	PrecacheScriptSound( "HL2Player.SprintNoPower" );
-	PrecacheScriptSound( "HL2Player.SprintStart" );
 	PrecacheScriptSound( "HL2Player.UseDeny" );
 	PrecacheScriptSound( "HL2Player.FlashLightOn" );
 	PrecacheScriptSound( "HL2Player.FlashLightOff" );

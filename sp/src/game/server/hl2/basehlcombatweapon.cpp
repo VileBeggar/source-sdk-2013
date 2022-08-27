@@ -168,7 +168,7 @@ void CHLMachineGun::DoMachineGunKick( CBasePlayer *pPlayer, float dampEasy, floa
 	float kickPerc = duration / slideLimitTime;
 
 	// do this to get a hard discontinuity, clear out anything under 10 degrees punch
-	pPlayer->ViewPunchReset( 10 );
+	// pPlayer->ViewPunchReset( 10 );
 
 	//Apply this to the view angles as well
 	vecScratch.x = -( KICK_MIN_X + ( maxVerticleKickAngle * kickPerc ) );
@@ -184,16 +184,16 @@ void CHLMachineGun::DoMachineGunKick( CBasePlayer *pPlayer, float dampEasy, floa
 		vecScratch.z *= -1;
 
 	//If we're in easy, dampen the effect a bit
-	if ( g_pGameRules->IsSkillLevel( SKILL_EASY ) )
-	{
-		for ( int i = 0; i < 3; i++ )
-		{
-			vecScratch[i] *= dampEasy;
-		}
-	}
+	//if ( g_pGameRules->IsSkillLevel( SKILL_EASY ) )
+	//{
+	//	for ( int i = 0; i < 3; i++ )
+	//	{
+	//		vecScratch[i] *= dampEasy;
+	//	}
+	//}
 
 	//Clip this to our desired min/max
-	UTIL_ClipPunchAngleOffset( vecScratch, pPlayer->m_Local.m_vecPunchAngle, QAngle( 24.0f, 3.0f, 1.0f ) );
+	//UTIL_ClipPunchAngleOffset( vecScratch, pPlayer->m_Local.m_vecPunchAngle, QAngle( 24.0f, 3.0f, 1.0f ) );
 
 	//Add it to the view punch
 	// NOTE: 0.5 is just tuned to match the old effect before the punch became simulated

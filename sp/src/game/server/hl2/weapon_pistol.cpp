@@ -24,7 +24,7 @@
 #define	PISTOL_FASTEST_REFIRE_TIME		0.1f
 #define	PISTOL_FASTEST_DRY_REFIRE_TIME	0.2f
 
-#define	PISTOL_ACCURACY_SHOT_PENALTY_TIME		0.2f	// Applied amount of time each shot adds to the time we must recover from
+#define	PISTOL_ACCURACY_SHOT_PENALTY_TIME		0.15f	// Applied amount of time each shot adds to the time we must recover from
 #define	PISTOL_ACCURACY_MAXIMUM_PENALTY_TIME	2.0f	// Maximum penalty to deal out
 
 ConVar	pistol_use_new_accuracy( "pistol_use_new_accuracy", "1" );
@@ -538,8 +538,8 @@ void CWeaponPistol::AddViewKick( void )
 
 	QAngle	viewPunch;
 
-	viewPunch.x = random->RandomFloat(-0.6f, -0.9f) * (1.2 + m_flAccuracyPenalty);
-	viewPunch.y = random->RandomFloat(-0.5f, 0.5f) * (1 + m_flAccuracyPenalty);
+	viewPunch.x = random->RandomFloat(-0.3f, -0.6f) * (0.5 + m_flAccuracyPenalty);
+	viewPunch.y = random->RandomFloat(-0.5f, 0.5f) * (0.5 + m_flAccuracyPenalty);
 	viewPunch.z = 0.0f;
 
 	//Add it to the view punch

@@ -53,7 +53,11 @@ public:
 
 	virtual const Vector& GetBulletSpread( void )
 	{
-		static const Vector cone = VECTOR_CONE_5DEGREES;
+		static Vector npcCone = VECTOR_CONE_5DEGREES;
+		if (GetOwner() && GetOwner()->IsNPC())
+			return npcCone;
+
+		static const Vector cone = VECTOR_CONE_4DEGREES;
 		return cone;
 	}
 
@@ -407,7 +411,7 @@ bool CWeaponSMG1::Reload( void )
 void CWeaponSMG1::AddViewKick( void )
 {
 	#define	EASY_DAMPEN			0.5f
-	#define	MAX_VERTICAL_KICK	1.0f	//Degrees
+	#define	MAX_VERTICAL_KICK	4.0f	//Degrees
 	#define	SLIDE_LIMIT			2.0f	//Seconds
 	
 	//Get the view kick

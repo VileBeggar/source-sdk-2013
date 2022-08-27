@@ -299,7 +299,7 @@ float CBaseHLCombatWeapon::CalcViewmodelBob( void )
 	g_verticalBob = speed*0.005f;
 	g_verticalBob = g_verticalBob*0.3 + g_verticalBob*0.7*sin(cycle);
 
-	g_verticalBob = clamp( g_verticalBob, -7.0f, 4.0f );
+	g_verticalBob = clamp( g_verticalBob, -4.0f, 4.0f );
 
 	//Calculate the lateral bob
 	cycle = bobtime - (int)(bobtime/HL2_BOB_CYCLE_MAX*2)*HL2_BOB_CYCLE_MAX*2;
